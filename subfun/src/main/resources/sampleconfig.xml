@@ -6,7 +6,8 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>    
-   
+    <bean class="pl.almatron.subfun.SomeBeanPostProcessor"></bean>
+
     <!-- services -->
 
     <bean id="sampleBean" class="pl.almatron.subfun.SampleBean">
@@ -21,12 +22,26 @@
 
     </bean>
     
-    <bean id="singletonBean" class="pl.almatron.subfun.SingletonBean" p:configValue="ConfigVal">
+    <bean id="singletonBean" class="pl.almatron.subfun.SingletonBean" 
+          p:configValue="ConfigVal">
         <property name="entryValue" value="ValueIs" />
         <lookup-method name="createSampleRef" bean="refBean" />
     </bean>
+    
+    <bean id="baseBean" class="pl.almatron.subfun.BaseBean">
+        <property name="someValue" value="BaseValue" />
+    </bean>
+    
+    <bean id="childBean" class="pl.almatron.subfun.ChildBean" parent="baseBean">
+        <property name="childValue" value="DeriveValue" />
+    </bean>
+    
+    <bean id="childBeanNoParent" class="pl.almatron.subfun.ChildBean" >
+        <property name="childValue" value="DeriveValue" />
+    </bean>
 
-
+    <bean id="someBean" class="pl.almatron.subfun.CustomFactoryBean"  />
+        
     <!-- more bean definitions for services go here -->
 
 </beans>
