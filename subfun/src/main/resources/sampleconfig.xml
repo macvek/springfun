@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>    
+   
     <!-- services -->
 
     <bean id="sampleBean" class="pl.almatron.subfun.SampleBean">
         <property name="ref" ref="refBean"/>
     </bean>
     
-    <bean id="refBean" class="pl.almatron.subfun.RefBean">
+    <bean id="anotherBean" class="pl.almatron.subfun.AnotherSample" autowire="byType" init-method="initMethod">
+        
+    </bean>
+    
+    <bean id="refBean" class="pl.almatron.subfun.RefBean" scope="prototype">
 
+    </bean>
+    
+    <bean id="singletonBean" class="pl.almatron.subfun.SingletonBean" p:configValue="ConfigVal">
+        <property name="entryValue" value="ValueIs" />
+        <lookup-method name="createSampleRef" bean="refBean" />
     </bean>
 
 
