@@ -1,7 +1,10 @@
 package pl.almatron.subfun;
 
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import pl.almatron.subfun.scannable.FoundService;
 
 /**
  * subfun
@@ -38,5 +41,14 @@ public class SampleApp {
         System.out.println("Factory bean for someBean:"+someBeanFactory.toString());
         System.out.println("Bean produces by someBean FactoryBean:"+someBeanFactory.getObject());
         
+        ChildBean codeOriended = context.getBean("codeConfigChildBean", ChildBean.class);
+        System.out.println("Code oriented configuration: "+codeOriended);
+        
+        ApplicationContext codeBaseContext = new AnnotationConfigApplicationContext(ConfigBean.class);
+        final Sample bean = codeBaseContext.getBean("sampleBean", Sample.class);
+        System.out.println("Code based config is using xml defined bean definition: "+bean);
+        
+        FoundService service = codeBaseContext.getBean(FoundService.class);
+        service.foundServiceAction();
     }
 }
