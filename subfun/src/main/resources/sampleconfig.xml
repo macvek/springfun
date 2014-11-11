@@ -10,9 +10,10 @@
 
     <!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>    
     <bean class="pl.almatron.subfun.SomeBeanPostProcessor"></bean>-->
-    <context:annotation-config />
+    <context:annotation-config  />
+    
     <bean class="pl.almatron.subfun.ConfigBean" />
-
+    
     <!-- services -->
 
     <bean id="sampleBean" class="pl.almatron.subfun.SampleBean">
@@ -39,6 +40,7 @@
     
     <bean id="childBean" class="pl.almatron.subfun.ChildBean" parent="baseBean">
         <property name="childValue" value="DeriveValue" />
+        <property name="file" value="/Users/macvek/wakacje.txt" />
     </bean>
     
     <bean id="childBeanNoParent" class="pl.almatron.subfun.ChildBean" >
