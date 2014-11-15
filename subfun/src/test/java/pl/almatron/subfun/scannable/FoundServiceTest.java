@@ -9,9 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import org.mockito.MockitoAnnotations;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import static org.testng.Assert.*;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -29,7 +27,7 @@ public class FoundServiceTest {
     
         
     @BeforeMethod
-    public void initMocks() {
+    public void initMocks() throws Exception {
         foundService = new FoundService();
         MockitoAnnotations.initMocks(this);
     }
