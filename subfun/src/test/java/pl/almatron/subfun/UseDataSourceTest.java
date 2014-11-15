@@ -19,7 +19,7 @@ public class UseDataSourceTest {
     
     @BeforeClass
     public static void setUpClass() {
-        context = new ClassPathXmlApplicationContext(new String[]{"sampleconfig.xml"});
+        context = new ClassPathXmlApplicationContext(new String[]{"testconfig.xml"});
     }
     
     @Test
