@@ -6,21 +6,13 @@
 package pl.almatron.subfun;
 
 import java.sql.SQLException;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author macvek
  */
-public class UseDataSourceTest {
-    private static ClassPathXmlApplicationContext context;
-    
-    @BeforeClass
-    public static void setUpClass() {
-        context = new ClassPathXmlApplicationContext(new String[]{"testconfig.xml"});
-    }
+public class UseDataSourceTest extends FunTestBase {
     
     @Test
     public void testSomeMethod() throws SQLException {
