@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.sql.DataSource;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 /**
  * subfun
  * @author macvek
  */
+@Repository
 public class UseDataSource {
     
     private DataSource datasource;
