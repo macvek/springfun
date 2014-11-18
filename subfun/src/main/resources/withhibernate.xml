@@ -16,33 +16,20 @@
 
     <!-- services -->
     <context:annotation-config />
-    
-    <!--    <tx:annotation-driven transaction-manager="txManager" />-->
+    <tx:annotation-driven transaction-manager="txManager"/>
 
     <bean id="useDataSource" class="pl.almatron.subfun.UseDataSource" >
         <property name="datasource" ref="dataSource" />
         
     </bean>
 
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="dataSource" ref="dataSource"/>
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
-    <tx:advice id="txAdvice" transaction-manager="txManager" >
-        <tx:attributes>
-            <tx:method name="action*" />
-        </tx:attributes>
-    </tx:advice>
-    
-    
-    <aop:config>
-        <aop:pointcut id="defaultServiceOperation"
-                       expression="execution(* pl.almatron.subfun.DataSourceService.*(..))"/>
 
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="defaultServiceOperation"/>
-    </aop:config>
-
-    <bean id="dataSourceService" class="pl.almatron.subfun.DataSourceService" />
+    <bean id="sampleRepo" class="pl.almatron.subfun.SampleRepo" />
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -51,4 +38,18 @@
         <property name="password" value=""/>
     </bean>
     
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingResources">
+            <list>
+                <value>pl/almatron/subfun/domain/SampleObject.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=org.hibernate.dialect.HSQLDialect
+            </value>
+        </property>
+    </bean>
+
 </beans>
