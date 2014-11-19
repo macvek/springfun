@@ -16,6 +16,7 @@
 
     <!-- services -->
     <context:annotation-config />
+    <context:component-scan base-package="pl.almatron.subfun" />
     <tx:annotation-driven transaction-manager="txManager"/>
 
     <bean id="useDataSource" class="pl.almatron.subfun.UseDataSource" >
@@ -42,7 +43,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="mappingResources">
             <list>
-                <value>pl/almatron/subfun/domain/SampleObject.hbm.xml</value>
+<!--                <value>pl/almatron/subfun/domain/SampleObject.hbm.xml</value>-->
                 <value>pl/almatron/subfun/domain/SampleItem.hbm.xml</value>
             </list>
         </property>
@@ -51,6 +52,11 @@
                 hibernate.dialect=org.hibernate.dialect.HSQLDialect
                 hibernate.show_sql=true
             </value>
+        </property>
+        <property name="packagesToScan">
+            <list>
+                <value>pl.almatron.subfun.domain</value>
+            </list>
         </property>
     </bean>
 
