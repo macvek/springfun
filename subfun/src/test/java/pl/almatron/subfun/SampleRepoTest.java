@@ -6,6 +6,7 @@
 package pl.almatron.subfun;
 
 import java.util.Set;
+import java.util.Timer;
 import org.testng.Assert;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;

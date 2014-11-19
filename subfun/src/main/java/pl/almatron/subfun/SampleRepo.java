@@ -34,7 +34,7 @@ public class SampleRepo {
     
     public int countSampleObjects() {
         final Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from SampleObject").list().size();
+        return ((Number)session.createQuery("select count(*) from SampleObject").iterate().next()).intValue();
     }
 
     public void deleteAll() {
@@ -53,7 +53,7 @@ public class SampleRepo {
 
     public int countSampleItems() {
         final Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from SampleItem").list().size();
+        return ((Number)session.createQuery("select count(*) from SampleItem").iterate().next()).intValue();
     }
 
     public void doAddItem(String name) {
