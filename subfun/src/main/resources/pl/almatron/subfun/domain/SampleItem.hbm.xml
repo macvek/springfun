@@ -9,5 +9,10 @@
             <generator class="native"/>
         </id>
         <property name="name" />
+        
+        <bag name="objects" table="sampleItems_sampleObjects" lazy="false">
+            <key column="item_id" />
+            <many-to-many column="object_id" class="SampleObject"/>
+        </bag>
     </class>
 </hibernate-mapping>

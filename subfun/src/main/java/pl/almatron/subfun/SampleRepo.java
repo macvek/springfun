@@ -64,12 +64,11 @@ public class SampleRepo {
         currentSession.save(item);
     }
 
-    public void createObjectWithItem(String someItem) {
+    public void createObjectWithItem(String someItem, String someTitle) {
         final Session session = sessionFactory.getCurrentSession();
         SampleObject object = new SampleObject();
         object.setDate(new Date());
-        final String name = "createObjectWithItem title";
-        object.setTitle(name);
+        object.setTitle(someTitle);
         
         session.save(object);
         
@@ -86,6 +85,11 @@ public class SampleRepo {
         final Session session = sessionFactory.getCurrentSession();
         List<SampleObject> objects = session.createQuery("from SampleObject").list();
         return objects.get(0).getItems().iterator().next();
+    }
+    
+    public SampleItem getFirstItem() {
+        final Session session = sessionFactory.getCurrentSession();
+        return (SampleItem) session.createQuery("from SampleItem").list().get(0);
     }
     
     

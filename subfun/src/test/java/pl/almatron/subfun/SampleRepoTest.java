@@ -65,9 +65,17 @@ public class SampleRepoTest extends DBTestBase {
     @Test
     public void testShouldAddItemToObject() {
         repo.doAddItem("SomeItem");
-        repo.createObjectWithItem("SomeItem");
+        repo.createObjectWithItem("SomeItem", "SomeTitle");
         final SampleItem item = repo.getCreatedObjectItem();
         assertEquals("SomeItem", item.getName());
+    }
+    
+    @Test
+    public void testShouldReturnObjectWithLoadedItems() {
+        repo.doAddItem("SomeOtherItem");
+        repo.createObjectWithItem("SomeOtherItem", "SomeOtherItem title");
+        final SampleItem firstItem = repo.getFirstItem();
+        assertEquals("SomeOtherItem title", firstItem.getObjects().get(0).getTitle());
     }
     
 }

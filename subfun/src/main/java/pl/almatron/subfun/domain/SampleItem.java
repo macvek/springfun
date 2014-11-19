@@ -1,5 +1,8 @@
 package pl.almatron.subfun.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * subfun
  * @author macvek
@@ -7,6 +10,8 @@ package pl.almatron.subfun.domain;
 public class SampleItem {
     private String name;
     private Long id;
+    
+    private List<SampleObject> objects = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -23,5 +28,14 @@ public class SampleItem {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public List<SampleObject> getObjects() {
+        return objects;
+    }
+
+    public void setObjects(List<SampleObject> objects) {
+        this.objects = objects;
+    }
+    
     
 }
