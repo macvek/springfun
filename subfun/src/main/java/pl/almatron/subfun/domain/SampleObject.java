@@ -1,6 +1,8 @@
 package pl.almatron.subfun.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * subfun
@@ -12,6 +14,8 @@ public class SampleObject {
     private String title;
     private Date date;
 
+    private Set<SampleItem> items = new HashSet<>();
+    
     public Long getId() {
         return id;
     }
@@ -35,6 +39,13 @@ public class SampleObject {
     public void setDate(Date date) {
         this.date = date;
     }
-    
+
+    public Set<SampleItem> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<SampleItem> items) {
+        this.items = items;
+    }
     
 }

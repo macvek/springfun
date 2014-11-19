@@ -5,12 +5,14 @@
  */
 package pl.almatron.subfun;
 
+import java.util.Set;
 import org.testng.Assert;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pl.almatron.subfun.domain.SampleItem;
+import pl.almatron.subfun.domain.SampleObject;
 
 
 
@@ -24,31 +26,48 @@ public class SampleRepoTest extends DBTestBase {
     @BeforeMethod 
     public void setup() {
         repo = context.getBean("sampleRepo", SampleRepo.class);
+        repo.deleteAll();
     }
     
     @Test
     public void testSomeMethod() throws Exception {
         repo.doSomething();
-        assertNotEquals(0, repo.countAllItems());
+        assertNotEquals(0, repo.countSampleObjects());
     }
     
     @Test
     public void testDeleteAll() throws Exception {
         repo.deleteAll();
-        assertEquals(0, repo.countAllItems());
+        assertEquals(0, repo.countSampleObjects());
+        assertEquals(0, repo.countSampleItems());
     }
     
     @Test
     public void testShouldRollbackTrasaction() throws Exception {
-        assertEquals(0, repo.countAllItems());
+        assertEquals(0, repo.countSampleObjects());
         try {
             repo.doSomethingAndFail();
         }
         catch(RuntimeException exception) {
-            assertEquals(0, repo.countAllItems());
+            assertEquals(0, repo.countSampleObjects());
             return;
         }
         Assert.fail("Should have thrown exception");
+    }
+    
+    @Test
+    public void testShouldAddItem() throws Exception {
+        assertEquals(0, repo.countSampleItems());
+        repo.doAddItem("SomeItem");
+        assertEquals(1, repo.countSampleItems());
+    }
+    
+    @Test
+    public void testShouldAddItemToObject() {
+        repo.doAddItem("SomeItem");
+        repo.createObjectWithItem("SomeItem");
+        final SampleItem item = repo.getCreatedObjectItem();
+        assertEquals("SomeItem", item.getName());
     }
     
 }

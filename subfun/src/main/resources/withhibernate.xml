@@ -43,11 +43,13 @@
         <property name="mappingResources">
             <list>
                 <value>pl/almatron/subfun/domain/SampleObject.hbm.xml</value>
+                <value>pl/almatron/subfun/domain/SampleItem.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <value>
                 hibernate.dialect=org.hibernate.dialect.HSQLDialect
+                hibernate.show_sql=true
             </value>
         </property>
     </bean>

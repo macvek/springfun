@@ -4,16 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="pl.almatron.subfun.domain">
-    <class name="SampleObject" table="sampleobjects">
+    <class name="SampleItem" table="sampleitems">
         <id name="id" column="id">
             <generator class="native"/>
         </id>
-        <property name="title" />
-        <property name="date" type="timestamp" column="sampletimestamp"/>
-        
-        <set name="items" table="sampleItems_sampleObjects">
-            <key column="object_id"/>
-            <many-to-many column="item_id" class="SampleItem"/>
-        </set>
+        <property name="name" />
     </class>
 </hibernate-mapping>
