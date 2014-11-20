@@ -26,11 +26,12 @@ public class HelloWorld {
 
     private static void setupContextHandler() throws IOException {
         XmlWebApplicationContext webContext = new XmlWebApplicationContext();
-
+        
         ServletContextHandler contextHandler = new ServletContextHandler();
         contextHandler.setErrorHandler(null);
         contextHandler.setContextPath("/");
-        contextHandler.addServlet(new ServletHolder(new DispatcherServlet(webContext)), "/*");
+        webContext.setConfigLocation("/WEB-INF/helloworld-servlet.xml");
+        contextHandler.addServlet(new ServletHolder("helloworld", new DispatcherServlet(webContext)), "/*");
         contextHandler.addEventListener(new ContextLoaderListener(webContext));
         contextHandler.setResourceBase(new ClassPathResource("/").getURI().toString());
         
