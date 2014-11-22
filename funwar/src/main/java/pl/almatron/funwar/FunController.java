@@ -2,6 +2,7 @@ package pl.almatron.funwar;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * funwar
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FunController {
     
-    @RequestMapping("*")
-    public String helloClient() {
-        return "helloClient";
+    @RequestMapping("/")
+    public ModelAndView helloClientHandler() {
+        return new ModelAndView("helloClient");
     }
 }
